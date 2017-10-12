@@ -8,7 +8,9 @@ RUN apk add --no-cache --update ca-certificates \
 
 ENV SRC_DIR=/go/src/github.com/jhidalgo3/training-docker-microservice
 
-CMD go get github.com/Masterminds/glide
+CMD go get github.com/Masterminds/glide \ 
+    && glide install
+
 
 ADD ./src/github.com/jhidalgo3/training-docker-microservice ${SRC_DIR}
 
