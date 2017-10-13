@@ -43,3 +43,10 @@ API
 
 VUE application
 + http://localhost:8080/static/
+
+# Github repository
+
+[https://github.com/jhidalgo3/training-docker-microservice](https://github.com/jhidalgo3/training-docker-microservice)
+
+Author: Jose Maria Hidalgo Garcia
+MIT License
