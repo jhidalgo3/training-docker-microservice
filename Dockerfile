@@ -10,12 +10,13 @@ ENV SRC_DIR=/go/src/github.com/jhidalgo3/training-docker-microservice
 
 ADD ./src/github.com/jhidalgo3/training-docker-microservice ${SRC_DIR}
 
+
 WORKDIR ${SRC_DIR}
 RUN go get github.com/Masterminds/glide
 
 RUN glide install
 
-RUN CGO_ENABLED=0 GOOS=linux go build
+RUN CGO_ENABLED=0 GOOS=linux go build -i -v -ldflags "-X github.com/jhidalgo3/training-docker-microservice/config.Version=$(git describe --always --long)"
 
 FROM alpine:latest  
 RUN apk --no-cache add ca-certificates
@@ -23,5 +24,6 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 
 COPY --from=builder /go/src/github.com/jhidalgo3/training-docker-microservice/training-docker-microservice  .
+ADD ./src/github.com/jhidalgo3/training-docker-microservice/static/ /root/static
 
 CMD ./training-docker-microservice

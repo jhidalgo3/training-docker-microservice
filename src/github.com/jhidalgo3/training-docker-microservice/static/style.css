@@ -1,0 +1,33 @@
+[v-cloak] {
+      display: none;
+    }
+
+.container {
+  padding: 20px 0
+}
+
+.column:last-child:not(:first-child),
+.columns:last-child:not(:first-child) {
+  float: left;
+}
+
+.main_heading {
+  margin: 10px 0 30px;
+}
+
+.callout {
+  margin-bottom: 40px;
+}
+
+select {
+  text-transform: capitalize;
+}
+
+.loader {
+  text-align: center;
+  padding: 40px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}

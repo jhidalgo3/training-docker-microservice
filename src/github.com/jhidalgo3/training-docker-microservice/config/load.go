@@ -8,7 +8,14 @@ import (
 	"github.com/spf13/viper"
 )
 
+type Info struct {
+	Instance string `json:"instance"`
+	Version  string `json:"version"`
+}
+
 var Params ConfigParams
+
+var Version string
 
 type ConfigParams struct {
 	Logger struct {
@@ -25,6 +32,8 @@ type ConfigParams struct {
 }
 
 func init() {
+	fmt.Printf("%v\n", Version)
+
 	viper.AddConfigPath("./configs")
 	viper.AddConfigPath("$HOME/configs")
 	// And then register config file name (no extension)

@@ -20,3 +20,25 @@ mongo:
 logger:
   logFile: /tmp/file.log
 ```
+
+# Docker
+
+## Build Docker image
+
+```
+docker build -t jhidalgo3/training-docker-microservice --rm .
+```
+
+## Run Docker image
+
+```
+docker run --rm  -ti -p 8080:8080 -v $PWD/src/github.com/jhidalgo3/training-docker-microservice/configs:/root/configs jhidalgo3/training-docker-microservice
+```
+
+# URLS
+
++ http://localhost:8080/api/config
++ http://localhost:8080/api/info
+
+VUE application
++ 

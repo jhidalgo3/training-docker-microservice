@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.8.2/js-yaml.min.js"></script>
+  
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="Jose Maria Hidalgo Garcia">
+  <title>Microservice VUE</title>
+</head>
+<body>
+  <div v-cloak class="container" id="app">
+    <h3 class="text-center">Microservice VUE</h3>
+    <section class="callout secondary">
+      <form>
+        <div class="row">
+          <div class="medium-6 columns">
+            <a @click="update()" class="waves-effect waves-light btn-large">Retrieve Info</a>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <h5 class="text-center uppercase" v-if="!loading">{{ title }}</h5>
+    <div v-if="loading" class="loader"><img src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="loader"></div>
+   
+     <info-host v-if="!loading" :config="config" :info="info"></info-host>
+    
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
