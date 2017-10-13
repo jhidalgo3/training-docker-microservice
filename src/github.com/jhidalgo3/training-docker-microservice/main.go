@@ -1,11 +1,14 @@
 package main
 
-import "github.com/jhidalgo3/training-docker-microservice/server"
-import "fmt"
+import (
+	"fmt"
 
-var Version string
+	"github.com/jhidalgo3/training-docker-microservice/config"
+	"github.com/jhidalgo3/training-docker-microservice/server"
+)
 
 func main() {
-	fmt.Printf("%s", Version)
+	fmt.Printf("Commit %v\n", config.GetCommit())
+	fmt.Printf("Version %v\n", config.GetVersion())
 	server.StartServer()
 }

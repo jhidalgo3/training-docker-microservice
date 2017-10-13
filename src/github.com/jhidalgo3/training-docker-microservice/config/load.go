@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"log"
+	"os"
 	"strings"
 
 	"github.com/spf13/viper"
@@ -10,12 +11,14 @@ import (
 
 type Info struct {
 	Instance string `json:"instance"`
+	Commit   string `json:"commit"`
 	Version  string `json:"version"`
 }
 
 var Params ConfigParams
 
 var Version string
+var Commit string
 
 type ConfigParams struct {
 	Logger struct {
@@ -32,7 +35,6 @@ type ConfigParams struct {
 }
 
 func init() {
-	fmt.Printf("%v\n", Version)
 
 	viper.AddConfigPath("./configs")
 	viper.AddConfigPath("$HOME/configs")
@@ -99,4 +101,31 @@ func init() {
 		fmt.Printf("mongo.password Value: %v, Type: %T\n", viper.Get("mongo.password"), viper.Get("mongo.password"))
 	}
 
+}
+
+func GetCommit() string {
+	commit := Commit
+	if commit == "" {
+		commit = "-"
+	}
+
+	return commit
+}
+
+func GetVersion() string {
+	ver := os.Getenv("VERSION")
+	if ver == "" {
+		ver = "Please, you need to define an value to VERSION"
+	}
+
+	return ver
+}
+
+func GetHostname() string {
+	hostname, err := os.Hostname()
+	if err != nil {
+		hostname = "unknown"
+	}
+
+	return hostname
 }

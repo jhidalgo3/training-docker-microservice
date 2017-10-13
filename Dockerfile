@@ -8,7 +8,7 @@ RUN apk add --no-cache --update ca-certificates \
 
 ENV SRC_DIR=/go/src/github.com/jhidalgo3/training-docker-microservice
 
-ADD ./src/github.com/jhidalgo3/training-docker-microservice ${SRC_DIR}
+ADD . /go
 
 
 WORKDIR ${SRC_DIR}
@@ -16,7 +16,7 @@ RUN go get github.com/Masterminds/glide
 
 RUN glide install
 
-RUN CGO_ENABLED=0 GOOS=linux go build -i -v -ldflags "-X github.com/jhidalgo3/training-docker-microservice/config.Version=$(git describe --always --long)"
+RUN CGO_ENABLED=0 GOOS=linux go build -i -v -ldflags "-X github.com/jhidalgo3/training-docker-microservice/config.Commit=$(git describe --always --long)"
 
 FROM alpine:latest  
 RUN apk --no-cache add ca-certificates

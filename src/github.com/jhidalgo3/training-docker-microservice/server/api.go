@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/gorilla/mux"
 	"github.com/jhidalgo3/training-docker-microservice/config"
@@ -33,31 +32,13 @@ func getConfig(w http.ResponseWriter, r *http.Request) {
 func getInfo(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Connection", "close")
 
-	hostname := getHostname()
 	p := config.Info{
-		Instance: hostname,
-		Version:  getVersion(),
+		Instance: config.GetHostname(),
+		Commit:   config.GetCommit(),
+		Version:  config.GetVersion(),
 	}
 
 	if err := json.NewEncoder(w).Encode(p); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
-}
-
-func getVersion() string {
-	ver := config.Version
-	if ver == "" {
-		ver = "-"
-	}
-
-	return ver
-}
-
-func getHostname() string {
-	hostname, err := os.Hostname()
-	if err != nil {
-		hostname = "unknown"
-	}
-
-	return hostname
 }

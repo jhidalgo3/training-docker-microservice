@@ -32,13 +32,14 @@ docker build -t jhidalgo3/training-docker-microservice --rm .
 ## Run Docker image
 
 ```
-docker run --rm  -ti -p 8080:8080 -v $PWD/src/github.com/jhidalgo3/training-docker-microservice/configs:/root/configs jhidalgo3/training-docker-microservice
+docker run --rm  -ti -p 8080:8080 -e VERSION=1.0 -v $PWD/src/github.com/jhidalgo3/training-docker-microservice/configs:/root/configs jhidalgo3/training-docker-microservice
 ```
 
 # URLS
 
+API
 + http://localhost:8080/api/config
 + http://localhost:8080/api/info
 
 VUE application
-+ 
++ http://localhost:8080/static/
